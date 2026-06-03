@@ -1,9 +1,11 @@
 // backend/db.js
 const mysql = require('mysql2/promise');
-const url = require('url');
+const { URL } = require('url');
 
 const dbUrl = process.env.DATABASE_URL;
-const parsedUrl = new url.URL(dbUrl);
+console.log("DATABASE_URL:", dbUrl); // Debug log
+
+const parsedUrl = new URL(dbUrl);
 
 const pool = mysql.createPool({
   host: parsedUrl.hostname,
@@ -13,7 +15,7 @@ const pool = mysql.createPool({
   database: parsedUrl.pathname.replace('/', ''),
   waitForConnections: true,
   connectionLimit: 10,
+  ssl: { rejectUnauthorized: false } // Important for Railway internal MySQL
 });
-console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
 module.exports = pool;
