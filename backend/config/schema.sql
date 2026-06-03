@@ -1,0 +1,37 @@
+CREATE DATABASE IF NOT EXISTS taskflow;
+USE taskflow;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  avatar VARCHAR(255) DEFAULT NULL,
+  reset_token VARCHAR(255) DEFAULT NULL,
+  reset_expires DATETIME DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  description TEXT,
+  color VARCHAR(20) DEFAULT '#6366f1',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  project_id INT DEFAULT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  status ENUM('todo', 'in_progress', 'done') DEFAULT 'todo',
+  priority ENUM('low', 'medium', 'high') DEFAULT 'medium',
+  due_date DATE DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL
+);

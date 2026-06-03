@@ -1,0 +1,20 @@
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.project-card { padding: 0; overflow: hidden; }
+.project-color-bar { height: 5px; }
+.project-body { padding: 18px; }
+.project-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.project-desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+.project-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.project-count { font-size: 13px; color: var(--text2); }
+
+.color-picker { display: flex; gap: 8px; flex-wrap: wrap; }
+.color-dot {
+  width: 28px; height: 28px; border-radius: 50%; border: 3px solid transparent;
+  cursor: pointer; transition: transform 0.1s;
+}
+.color-dot:hover { transform: scale(1.15); }
+.color-dot.selected { border-color: var(--text); transform: scale(1.15); }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text2); }
+.empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.3; }
+.empty-state p { margin-bottom: 16px; }

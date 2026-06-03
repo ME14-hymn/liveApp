@@ -1,0 +1,20 @@
+.filters { display: flex; gap: 10px; flex-wrap: wrap; }
+.filters .form-control { min-width: 120px; }
+
+.tasks-list { display: flex; flex-direction: column; gap: 10px; }
+.task-card { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px; }
+.task-main { flex: 1; min-width: 0; }
+.task-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.task-desc { font-size: 13px; color: var(--text2); margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.task-due { font-size: 12px; color: var(--text2); }
+.task-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text2); }
+.empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.3; }
+.empty-state p { margin-bottom: 16px; }
+
+@media (max-width: 600px) {
+  .task-card { flex-direction: column; }
+  .task-actions { align-self: flex-end; }
+}
