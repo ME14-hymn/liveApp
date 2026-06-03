@@ -14,5 +14,6 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
 });
+console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
 module.exports = pool;
